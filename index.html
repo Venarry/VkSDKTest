@@ -91,7 +91,7 @@
         var payments = null;
         var isAuth = false;
 
-        vkBridge.send("VKWebAppInit", {});
+        vkBridge.send("VKWebAppInit");
 
         function hAuthentication() {
             bridge.send("VKWebAppGetUserInfo").then(_info => {
@@ -100,9 +100,14 @@
         }
 
         function showCommonADV() {
-            vkBridge.send('VKWebAppShowNativeAds', { ad_format: "interstitial" }).then(data => {
-                console.log(data);
-            });
+            bridge.send('VKWebAppShowNativeAds', { ad_format: 'interstitial' })
+                .then((data) => {
+                    if (data.result) // Успех
+                        console.log('Реклама показана');
+                    else // Ошибка 
+                        console.log('Ошибка при показе');
+                })
+                .catch((error) => { console.log(error); });
         }
 
     </script>
