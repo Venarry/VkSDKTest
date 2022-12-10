@@ -86,21 +86,17 @@
     </script>
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
-        var player;
-        var sdk;
-        var payments = null;
-        var isAuth = false;
-
-        vkBridge.send("VKWebAppInit");
+        
+        vkBridge.send("VKWebAppInit", {});
 
         function hAuthentication() {
-            bridge.send("VKWebAppGetUserInfo").then(_info => {
+            vkBridge.send("VKWebAppGetUserInfo").then(_info => {
                 console.log(_info);
             })
         }
 
         function showCommonADV() {
-            bridge.send('VKWebAppShowNativeAds', { ad_format: 'interstitial' })
+            vkBridge.send('VKWebAppShowNativeAds', { ad_format: 'interstitial' })
                 .then((data) => {
                     if (data.result) // Успех
                         console.log('Реклама показана');
