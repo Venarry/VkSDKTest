@@ -26,9 +26,9 @@
       const buildUrl = "Build";
       const loaderUrl = buildUrl + "/1f01944e80fe7a928833c8b91dd945a9.js";
       const config = {
-        dataUrl: buildUrl + "/fbe33d3c0697d311d982235c05e98298.data.unityweb",
+        dataUrl: buildUrl + "/122a59ea1898d202bd9adb921acf07ae.data.unityweb",
         frameworkUrl: buildUrl + "/3f0233f41c2d7bc4651f4d399adeed50.js.unityweb",
-        codeUrl: buildUrl + "/27ccaca74e66839a7bc0bbb2674c61d4.wasm.unityweb",
+        codeUrl: buildUrl + "/32b4eac4bf4c17f689c0276d835d61ee.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "VkSDK",
@@ -91,31 +91,20 @@
         var payments = null;
         var isAuth = false;
 
-        vkBridge.send("VKWebAppInit");
+        vkBridge.send("VKWebAppInit", {});
 
         function hAuthentication() {
             bridge.send("VKWebAppGetUserInfo").then(_info => {
-                console.log("VenarryInfo:");
                 console.log(_info);
             })
         }
 
-        /*function showCommonADV() {
+        function showCommonADV() {
             vkBridge.send('VKWebAppShowNativeAds', { ad_format: "interstitial" }).then(data => {
                 console.log(data);
             });
-        }*/
-
-        function showCommonADV() {
-            bridge.send('VKWebAppShowNativeAds', { ad_format: 'interstitial' })
-                .then((data) => {
-                    if (data.result) // Успех
-                        console.log('Реклама показана');
-                    else // Ошибка 
-                        console.log('Ошибка при показе');
-                })
-                .catch((error) => { console.log(error); /* Ошибка */ });
         }
+
     </script>
 </body>
 </html>
