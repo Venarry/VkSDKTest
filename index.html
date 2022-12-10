@@ -91,17 +91,18 @@
 
         function hAuthentication() {
             vkBridge.send("VKWebAppGetUserInfo").then(_info => {
+                console.log("Data v0.1:");
                 console.log(_info);
             })
         }
 
         function showCommonADV() {
-            vkBridge.send('VKWebAppShowNativeAds', { ad_format: 'interstitial' })
+            vkBridge.send("VKWebAppShowNativeAds", { ad_format: "interstitial" })
                 .then((data) => {
                     if (data.result) // Успех
-                        console.log('Реклама показана');
+                        console.log("Реклама показана");
                     else // Ошибка 
-                        console.log('Ошибка при показе');
+                        console.log("Ошибка при показе");
                 })
                 .catch((error) => { console.log(error); });
         }
