@@ -99,10 +99,21 @@
             })
         }
 
-        function showCommonADV() {
+        /*function showCommonADV() {
             vkBridge.send('VKWebAppShowNativeAds', { ad_format: "interstitial" }).then(data => {
                 console.log(data);
             });
+        }*/
+
+        function showCommonADV() {
+            bridge.send('VKWebAppShowNativeAds', { ad_format: 'interstitial' })
+                .then((data) => {
+                    if (data.result) // Успех
+                        console.log('Реклама показана');
+                    else // Ошибка 
+                        console.log('Ошибка при показе');
+                })
+                .catch((error) => { console.log(error); /* Ошибка */ });
         }
     </script>
 </body>
