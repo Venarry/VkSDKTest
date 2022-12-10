@@ -95,6 +95,7 @@
 
         function hAuthentication() {
             bridge.send("VKWebAppGetUserInfo").then(_info => {
+                console.log("VenarryInfo:");
                 console.log(_info);
             })
         }
