@@ -91,7 +91,7 @@
         var payments = null;
         var isAuth = false;
 
-        vkBridge.send("VKWebAppInit", {});
+        vkBridge.send("VKWebAppInit");
 
         function hAuthentication() {
             bridge.send("VKWebAppGetUserInfo").then(_info => {
