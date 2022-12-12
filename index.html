@@ -115,11 +115,12 @@
         }
 
         function vkSetData(data) {
+            console.log("HTML saved: " + data);
             vkBridge.send("VKWebAppStorageSet", {
                 key: "save",
-                value: "data"
+                value: data
             }).then((data) => {
-                console.log("HTML saved: " + data);
+                //console.log("HTML saved: " + data);
                 })
                 .catch((error) => {
                     console.log(error);
