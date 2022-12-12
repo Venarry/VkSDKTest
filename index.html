@@ -116,11 +116,11 @@
 
         function vkSetData() {
             vkBridge.send("VKWebAppStorageSet", {
-                key: "save",
-                value: "data"
+                key: "gameData",
+                value: data
             }).then((data) => {
                 console.log("HTML saved: " + data);
-                })
+            })
                 .catch((error) => {
                     console.log(error);
                 });
