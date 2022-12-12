@@ -109,6 +109,7 @@
                 keys: ["save"]}).then((data) => {
                     //unityI.SendMessage("VkSDK", "DataGetted", JSON.stringify(data));
                     console.log("HTML data get: " + data);
+                    console.log("HTML data get: " + data[0].value);
                 }).catch((error) => {
                     console.log(error);
                 });
