@@ -26,9 +26,9 @@
       const buildUrl = "Build";
       const loaderUrl = buildUrl + "/1f01944e80fe7a928833c8b91dd945a9.js";
       const config = {
-        dataUrl: buildUrl + "/2a345f1b2741038117b6d40b6770a289.data.unityweb",
-        frameworkUrl: buildUrl + "/f949373624184b1fe909d8d8b099fcad.js.unityweb",
-        codeUrl: buildUrl + "/e3497f815d52d82da6e4a1ce1d7933d7.wasm.unityweb",
+        dataUrl: buildUrl + "/71ed485e43d7529ec05160e37a0a1260.data.unityweb",
+        frameworkUrl: buildUrl + "/573c59fbbd68cea2cab0b0668af4d9ac.js.unityweb",
+        codeUrl: buildUrl + "/5ff264d46de882c7fa7b1f3205ca22a8.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "VkSDK",
@@ -115,13 +115,13 @@
         }
 
         function vkSetData(data) {
-            console.log("HTML saved: " + data);
+            console.log("HTML try save: " + data);
             vkBridge.send("VKWebAppStorageSet", {
                 key: "save",
                 value: data
             }).then((data) => {
-                //console.log("HTML saved: " + data);
-                })
+                console.log("HTML saved: " + data);
+            })
                 .catch((error) => {
                     console.log(error);
                 });
