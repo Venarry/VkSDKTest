@@ -26,9 +26,9 @@
       const buildUrl = "Build";
       const loaderUrl = buildUrl + "/1f01944e80fe7a928833c8b91dd945a9.js";
       const config = {
-        dataUrl: buildUrl + "/122a59ea1898d202bd9adb921acf07ae.data.unityweb",
-        frameworkUrl: buildUrl + "/3f0233f41c2d7bc4651f4d399adeed50.js.unityweb",
-        codeUrl: buildUrl + "/32b4eac4bf4c17f689c0276d835d61ee.wasm.unityweb",
+        dataUrl: buildUrl + "/3c2153cff41ed82b2b4bbf1cbc874f5c.data.unityweb",
+        frameworkUrl: buildUrl + "/c1a11bd305f39ad5ee27b1ee1ce69d52.js.unityweb",
+        codeUrl: buildUrl + "/5400772db6c26ecf05797891cbdd6704.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "VkSDK",
@@ -75,9 +75,6 @@
             }).then((unityInstance) => {
                 unityI = unityInstance;
                 loadingCover.style.display = "none";
-                if (canFullscreen) {
-
-                }
             }).catch((message) => {
                 alert(message);
             });
@@ -86,25 +83,47 @@
     </script>
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script>
-        
+
         vkBridge.send("VKWebAppInit", {});
 
-        function hAuthentication() {
-            vkBridge.send("VKWebAppGetUserInfo").then(_info => {
-                console.log("Data v0.1:");
-                console.log(_info);
+        function vkAuthentication() {
+            bridge.send("VKWebAppGetUserInfo").then(info => {
+                console.log(info);
+                unityI.SendMessage("VkSDK", "AuthenticateSuccess", JSON.stringify(info));
             })
         }
 
-        function showCommonADV() {
-            vkBridge.send("VKWebAppShowNativeAds", { ad_format: "interstitial" })
-                .then((data) => {
-                    if (data.result) // Успех
+        function vkshowCommonADV() {
+            bridge.send("VKWebAppShowNativeAds", { ad_format: "interstitial" }).then((data) => {
+                    if (data.result)
                         console.log("Реклама показана");
-                    else // Ошибка 
+                    else
                         console.log("Ошибка при показе");
+            }).catch((error) => {
+                console.log(error);
+            });
+        }
+
+        function vkGetData() {
+            bridge.send("VKWebAppStorageGet", {
+                keys: ["save"]}).then((data) => {
+                    unityI.SendMessage("VkSDK", "DataGetted", JSON.stringify(info));
+                    console.log("HTML data get: " + data);
+                }).catch((error) => {
+                    console.log(error);
+                });
+        }
+
+        function vkSetData() {
+            bridge.send("VKWebAppStorageSet", {
+                key: "save",
+                value: "data"
+            }).then((data) => {
+                console.log("HTML saved: " + data);
                 })
-                .catch((error) => { console.log(error); });
+                .catch((error) => {
+                    console.log(error);
+                });
         }
 
     </script>
