@@ -26,7 +26,7 @@
       const buildUrl = "Build";
       const loaderUrl = buildUrl + "/1f01944e80fe7a928833c8b91dd945a9.js";
       const config = {
-        dataUrl: buildUrl + "/3c2153cff41ed82b2b4bbf1cbc874f5c.data.unityweb",
+        dataUrl: buildUrl + "/b1ff2c8a101e43d0fa1899081ee02526.data.unityweb",
         frameworkUrl: buildUrl + "/c1a11bd305f39ad5ee27b1ee1ce69d52.js.unityweb",
         codeUrl: buildUrl + "/5400772db6c26ecf05797891cbdd6704.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
@@ -87,14 +87,14 @@
         vkBridge.send("VKWebAppInit", {});
 
         function vkAuthentication() {
-            bridge.send("VKWebAppGetUserInfo").then(info => {
+            vkBridge.send("VKWebAppGetUserInfo").then(info => {
                 console.log(info);
                 unityI.SendMessage("VkSDK", "AuthenticateSuccess", JSON.stringify(info));
             })
         }
 
         function vkshowCommonADV() {
-            bridge.send("VKWebAppShowNativeAds", { ad_format: "interstitial" }).then((data) => {
+            vkBridge.send("VKWebAppShowNativeAds", { ad_format: "interstitial" }).then((data) => {
                     if (data.result)
                         console.log("Реклама показана");
                     else
@@ -105,7 +105,7 @@
         }
 
         function vkGetData() {
-            bridge.send("VKWebAppStorageGet", {
+            vkBridge.send("VKWebAppStorageGet", {
                 keys: ["save"]}).then((data) => {
                     unityI.SendMessage("VkSDK", "DataGetted", JSON.stringify(info));
                     console.log("HTML data get: " + data);
@@ -115,7 +115,7 @@
         }
 
         function vkSetData() {
-            bridge.send("VKWebAppStorageSet", {
+            vkBridge.send("VKWebAppStorageSet", {
                 key: "save",
                 value: "data"
             }).then((data) => {
