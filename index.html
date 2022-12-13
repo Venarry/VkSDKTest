@@ -26,9 +26,9 @@
       const buildUrl = "Build";
       const loaderUrl = buildUrl + "/1f01944e80fe7a928833c8b91dd945a9.js";
       const config = {
-        dataUrl: buildUrl + "/71ed485e43d7529ec05160e37a0a1260.data.unityweb",
-        frameworkUrl: buildUrl + "/573c59fbbd68cea2cab0b0668af4d9ac.js.unityweb",
-        codeUrl: buildUrl + "/5ff264d46de882c7fa7b1f3205ca22a8.wasm.unityweb",
+        dataUrl: buildUrl + "/b5b8af1498fb3871ee8c4292a09e6bbb.data.unityweb",
+        frameworkUrl: buildUrl + "/c057c8aa1562dd8ab3da9d4d8b111e66.js.unityweb",
+        codeUrl: buildUrl + "/be3024951b8c7d89a5bbef99195e1f03.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "VkSDK",
@@ -106,18 +106,19 @@
 
         function vkGetData() {
             vkBridge.send("VKWebAppStorageGet", {
-                keys: ["_save"]}).then((data) => {
-                    //unityI.SendMessage("VkSDK", "DataGetted", JSON.stringify(data));
-                    console.log("HTML data get: " + data);
-                }).catch((error) => {
-                    console.log(error);
-                });
+                keys: ["save"]
+            }).then((data) => {
+                unityI.SendMessage("VkSDK", "DataGetted", JSON.stringify(data));
+                console.log("HTML data get: " + data);
+            }).catch((error) => {
+                console.log(error);
+            });
         }
 
         function vkSetData(data) {
             console.log('HTML try save: ' + data);
             vkBridge.send('VKWebAppStorageSet', {
-                key: "_save",
+                key: "save",
                 value: data
             }).then((data) => {
                 if (data.result)
