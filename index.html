@@ -106,10 +106,9 @@
 
         function vkGetData() {
             vkBridge.send("VKWebAppStorageGet", {
-                keys: ["save"]}).then((data) => {
+                "keys": ["save"]}).then((data) => {
                     //unityI.SendMessage("VkSDK", "DataGetted", JSON.stringify(data));
                     console.log("HTML data get: " + data);
-                    console.log("HTML data get: " + data[0]);
                 }).catch((error) => {
                     console.log(error);
                 });
@@ -118,12 +117,11 @@
         function vkSetData(data) {
             console.log('HTML try save: ' + data);
             vkBridge.send('VKWebAppStorageSet', {
-                key: 'save',
-                value: data
+                "key": "save",
+                "value": data
             }).then((data) => {
-                console.log("HTML saved: " + data);
                 if (data.result)
-                    console.log("HTML saved: " + data[0]);
+                    console.log("HTML saved: " + data);
             })
                 .catch((error) => {
                     console.log(error);
